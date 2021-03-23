@@ -35,7 +35,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
   const addProduct = async (productId: number) => {
     try {
       const productInCart = cart.find((product) => product.id === productId);
-      if (productInCart) {
+      if (!productInCart) {
         const { data: product } = await api.get<Product>(
           `products/${productId}`
         );
